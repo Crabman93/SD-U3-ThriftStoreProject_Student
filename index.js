@@ -55,11 +55,60 @@ const salesTax = [
 
 //! Classes
 
+class Store{
+    constructor(name, state, inventory, balance, expenses, profit, paidTax, salesTax){
+        this.name = name;
+        this.state = state;
+        this.inventory = inventory;
+        this.balance = balance;
+        this.expenses = expenses;
+        this.profit = profit;
+        this.paidTax = paidTax;
+        this.salesTax = salesTax;
+    }
+    static createStore(name, state, inventory, balance, expenses, profit, paidTax){
+    let foundSalesTax = salesTax.find(objectState => state == objectState["state"]);
+    let stateSalesTax = foundSalesTax["tax"];
+    return new Store(name, state, inventory, balance, expenses, profit, paidTax, stateSalesTax);
+    }
+
+    addToInventory(newItem){
+
+//Does the store have the budget to purchase the item?
+if(newItem[purchasePrice] > this.balance) {
+    console.log("Not enough Money for purchase!")
+    return
+}
+
+//Does the item already exist? This should be tracked by a upc. see Product below for more details.
+
+//If it already exists in inventory, simply update the quantity.
+
+//There shouldn't be duplicated items with the same upc.
+
+//If the item doesn't already exist, it should be added to inventory.
+
+//A mark-up price should be set to a purchase price. This will be noted in Product
+    }
+}
+
+class Product{
+    constructor(upc, name, type, purchasePrice, quantity){
+        this.upc = upc;
+        this.name = name;
+        this.type = type;
+        this.purchasePrice = purchasePrice;
+        this.quantity = quantity;
+    }
+}
 
 //! CREATE STORES
 // Generate 3 different stores, each in a different state.
+let storeOne = Store.createStore('storeOne', 'Vermont', [], 100, 0, 0, 0);
+console.log(storeOne);
 
 //! Inventory
+let dogTreats = new Product(123, "milkBone", "Pet Supply", 10.00, 500)
 
 
 //! Stocking
